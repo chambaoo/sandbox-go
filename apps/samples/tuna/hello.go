@@ -3,6 +3,8 @@ package main
 import "fmt"
 
 func main() {
-	fmt.Println("Hello World.")
+
+	message := "initalize message"
+	fmt.Println(message)
 
 }
