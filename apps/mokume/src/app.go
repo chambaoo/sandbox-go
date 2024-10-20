@@ -2,7 +2,7 @@ package main
 
 import (
 	"fmt"
-	"time"
+	"mokume/lib"
 )
 
 func main() {
@@ -11,35 +11,15 @@ func main() {
 	user := createUser()
 
 	fmt.Println(user)
-	fmt.Printf("from %s: %s\n", user, readMessage(1))
-	fmt.Printf("from %s: %s\n", user, readMessage(2))
+	
+	fmt.Printf("from %s: %s\n", user, lib.ReadMessage(1))
+	fmt.Printf("from %s: %s\n", user, lib.ReadMessage(2))
 
-	fmt.Printf("message sending...\n%s\n", sendMessage("Nagano", ""))
-	fmt.Printf("message sending...\n%s\n", sendMessage("", "towel"))
-	fmt.Printf("message sending...\n%s\n", sendMessage("Nagano", "towel"))
+	fmt.Printf("message sending...\n%s\n", lib.SendMessage("Nagano", ""))
+	fmt.Printf("message sending...\n%s\n", lib.SendMessage("", "towel"))
+	fmt.Printf("message sending...\n%s\n", lib.SendMessage("Nagano", "towel"))
 }
 
 func createUser() string {
 	return "Shiba"
-}
-
-func readMessage(id int) string {
-
-	messages := [...]string{"Hi.", "Bye."}
-
-	if id < 0 || id > len(messages)-1 {
-		// todo: throw error
-		return "error: message not found"
-	}
-
-	t := time.Now()
-	return t.String() + " " + messages[id]
-}
-
-func sendMessage(to string, message string) string {
-	if to == "" || message == "" {
-		// todo: throw error
-		return "error: address or message empty"
-	}
-	return fmt.Sprintf("to %s: %s", to, message)
 }
